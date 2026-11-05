@@ -262,6 +262,22 @@ await test("Payee is visible on the bill and in print styles",()=> {
   assert(payee.textContent==="Payable to Eastern Shore Foundation INC");
   assert(!payee.closest(".screen-only"));
 });
+await test("Bill to is optional, safely renders multiline text and survives job editing",()=> {
+  assert(invoiceDoc.querySelector("#billToPrintContainer").hidden);
+  assert(!invoiceDoc.querySelector("#billTo").required);
+  fill(invoiceDoc,"billTo","Alex Smith\nExample Studio <accounts>");
+  assert(invoiceDoc.querySelector("#billToPrint").textContent==="Alex Smith\nExample Studio <accounts>");
+  assert(!invoiceDoc.querySelector("#billToPrint accounts"));
+  assert(!invoiceDoc.querySelector("#printButton").disabled);
+  invoiceDoc.querySelector('[data-action="edit"]').click();
+  invoiceDoc.querySelector("#cancelButton").click();
+  assert(invoiceDoc.querySelector("#billTo").value==="Alex Smith\nExample Studio <accounts>");
+  fill(invoiceDoc,"billTo","   ");
+  assert(invoiceDoc.querySelector("#billToPrintContainer").hidden);
+  fill(invoiceDoc,"billTo","Alex Smith\nExample Studio");
+  invoice.contentWindow.dispatchEvent(new Event("beforeprint"));
+  assert(invoiceDoc.querySelector("#billTotal").textContent==="$69.77");
+});
 const css=await (await fetch("../styles.css")).text();
 const style=invoiceDoc.createElement("style");style.textContent=css.replace("@media print", "@media screen");invoiceDoc.head.append(style);
 await test("Print styles hide internal charges and show only invoice categories",()=> {
@@ -269,6 +285,9 @@ await test("Print styles hide internal charges and show only invoice categories"
   assert([...invoiceDoc.querySelectorAll(".item-details")].every(el=>view.getComputedStyle(el).display==="none"));
   assert([...invoiceDoc.querySelectorAll(".invoice-costs")].every(el=>view.getComputedStyle(el).display!=="none"));
   assert(view.getComputedStyle(invoiceDoc.querySelector("#payee")).display!=="none");
+  assert(!invoiceDoc.querySelector("#billToPrintContainer").hidden);
+  assert(view.getComputedStyle(invoiceDoc.querySelector("#billToPrint").parentElement).display!=="none");
+  assert(view.getComputedStyle(invoiceDoc.querySelector("#billTo").parentElement).display==="none");
   assert(view.getComputedStyle(invoiceDoc.querySelector(".job-description")).display!=="none");
   assert(invoiceDoc.querySelector(".item-meta").textContent.includes("2 hr 30 min"));
 });
