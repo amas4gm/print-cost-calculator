@@ -38,7 +38,7 @@ await test("Printer icons accept local assets, reject remote references",()=> {
   assert(parsePricing(xml.replace(/image="[^"]*"/,'image="assets/my-printer.jpg"')).printers[0].image==="assets/my-printer.jpg");
   rejects(xml.replace(/image="[^"]*"/,'image="https://example.com/photo.jpg"'));
 });
-const html = await (await fetch("../index.html")).text();
+const html = await (await fetch("../index.html",{cache:"no-store"})).text();
 const base = new URL("../",location.href).href;
 const fixture=document.querySelector("#fixture");
 const wait = async predicate => { for(let n=0;n<200;n++){ if(predicate()) return; await new Promise(r=>setTimeout(r,25)); } throw new Error("Timed out"); };
@@ -278,7 +278,7 @@ await test("Bill to is optional, safely renders multiline text and survives job 
   invoice.contentWindow.dispatchEvent(new Event("beforeprint"));
   assert(invoiceDoc.querySelector("#billTotal").textContent==="$69.77");
 });
-const css=await (await fetch("../styles.css")).text();
+const css=await (await fetch("../styles.css",{cache:"no-store"})).text();
 const style=invoiceDoc.createElement("style");style.textContent=css.replace("@media print", "@media screen");invoiceDoc.head.append(style);
 await test("Print styles hide internal charges and show only invoice categories",()=> {
   const view=invoice.contentWindow;
