@@ -259,7 +259,14 @@ $("billItems").addEventListener("click", event => {
     (remaining || $("printName")).focus();
   }
 });
+function updateBillTo() {
+  const recipient = $("billTo").value.trim();
+  $("billToPrint").textContent = recipient;
+  $("billToPrintContainer").hidden = !recipient;
+}
+$("billTo").addEventListener("input", updateBillTo);
 function preparePrint() {
+  updateBillTo();
   $("invoiceDate").textContent = new Date().toLocaleString();
 }
 window.addEventListener("beforeprint", preparePrint);

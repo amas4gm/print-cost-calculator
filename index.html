@@ -64,6 +64,11 @@
       <section class="panel bill" aria-labelledby="billTitle">
         <div class="section-heading"><h2 id="billTitle">Bill</h2><span id="printCount" class="count screen-only">0 jobs</span></div>
         <p class="print-only">Estimate · <span id="invoiceDate"></span></p>
+        <div class="screen-only">
+          <label for="billTo">Bill to (optional)</label>
+          <textarea id="billTo" name="billTo" rows="2" autocomplete="off"></textarea>
+        </div>
+        <div id="billToPrintContainer" hidden><div class="print-only"><strong>Bill to</strong><p id="billToPrint" class="job-description"></p></div></div>
         <p id="emptyBill" class="empty">No jobs added.</p>
         <div id="billItems"></div>
         <div class="bill-total"><div><span>Estimated total</span><small id="totalCaption">Includes applicable charges</small></div><output id="billTotal">—</output></div>
