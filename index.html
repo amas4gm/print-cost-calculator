@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Calculate 3D print costs and print a bill.">
+  <title>3D print cost calculator · AMAS</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#calculatorForm">Skip to calculator</a>
+  <main class="page">
+    <header class="masthead">
+      <img class="brand-logo" src="assets/amas-logo.jpg" alt="4GM — Fourth Generation Manufacturing, Advanced Manufacturing + Autonomous Systems" width="1254" height="1254">
+    </header>
+    <section class="intro screen-only" aria-labelledby="app-title">
+      <h1 id="app-title">Print Cost Calculator</h1>
+    </section>
+    <noscript><p class="error">Please enable JavaScript to use the print calculator.</p></noscript>
+    <div id="configStatus" class="notice screen-only" role="status">Loading machine pricing…</div>
+    <div id="configError" class="notice error screen-only" role="alert" hidden><p>Machine pricing is unavailable. Estimates are paused. Please retry.</p><button id="retryButton" type="button">Retry pricing</button></div>
+    <div class="layout">
+      <section class="panel screen-only" aria-labelledby="editorTitle">
+        <div class="section-heading"><h2 id="editorTitle">Add a job</h2></div>
+        <p id="entryHelp" class="hint">Add one entry per print run.</p>
+        <form id="calculatorForm">
+          <fieldset id="inputFields" disabled>
+            <legend class="sr-only">Job details</legend>
+            <label for="printName">Job name</label>
+            <input id="printName" name="printName" maxlength="100" placeholder="Job name" required autocomplete="off">
+            <label id="printerLabel" for="printerPicker">Machine</label>
+            <div id="printerControl" class="printer-control">
+              <select id="printer" name="printer" hidden aria-hidden="true" tabindex="-1"></select>
+              <button id="printerPicker" class="printer-picker" type="button" role="combobox" aria-labelledby="printerLabel printerModel" aria-describedby="printerHelp" aria-haspopup="listbox" aria-expanded="false" aria-controls="printerOptions">
+                <img id="printerImage" alt="" width="64" height="64" hidden><span id="printerModel"></span><span class="picker-arrow" aria-hidden="true">▾</span>
+              </button>
+              <div id="printerOptions" class="printer-options" role="listbox" aria-labelledby="printerLabel" hidden></div>
+            </div>
+            <p id="printerHelp" class="hint">Match the machine selected in your slicer.</p>
+            <div id="descriptionFields" hidden>
+              <label for="jobDescription">Extended description (optional)</label>
+              <textarea id="jobDescription" name="jobDescription" rows="4" disabled></textarea>
+            </div>
+            <div id="materialFields">
+            <label for="materialCost">Material cost (<span class="currencyLabel">USD</span>)</label>
+            <input id="materialCost" name="materialCost" type="number" min="0" step="0.01" placeholder="0.00" required aria-describedby="materialHelp" inputmode="decimal">
+            <p id="materialHelp" class="hint">Use the sliced material cost, including supports, not the weight in grams.</p>
+            </div>
+            <fieldset id="printTimeFields" class="time-fields"><legend>Print time</legend><div class="two-col">
+              <div><label for="printHours">Hours</label><input id="printHours" name="printHours" type="number" min="0" step="1" value="0" required inputmode="numeric"></div>
+              <div><label for="printMinutes">Minutes</label><input id="printMinutes" name="printMinutes" type="number" min="0" max="59" step="1" value="0" required inputmode="numeric"></div>
+            </div></fieldset>
+            <details id="laborFields" class="optional"><summary id="laborSummary">Staff-assisted work (optional)</summary><p id="optionalLaborHint" class="hint">Leave both at zero if operator labor does not apply.</p><div class="two-col">
+              <div><label for="operatorMinutes">Labor minutes</label><input id="operatorMinutes" name="operatorMinutes" type="number" min="0" step="1" value="0" required inputmode="numeric"></div>
+              <div><label for="payRate">Rate (<span class="currencyLabel">USD</span>/hour)</label><input id="payRate" name="payRate" type="number" min="0" step="0.01" value="0" required inputmode="decimal"></div>
+            </div></details>
+            <div class="estimate-preview"><span>This job</span><output id="draftTotal">—</output></div>
+            <p id="formError" class="error" role="alert"></p>
+            <div class="actions"><button id="saveButton" type="submit">Add to bill</button><button id="cancelButton" type="button" class="secondary" hidden>Cancel edit</button></div>
+          </fieldset>
+        </form>
+      </section>
+      <section class="panel bill" aria-labelledby="billTitle">
+        <div class="section-heading"><h2 id="billTitle">Bill</h2><span id="printCount" class="count screen-only">0 jobs</span></div>
+        <p class="print-only">Estimate · <span id="invoiceDate"></span></p>
+        <p id="emptyBill" class="empty">No jobs added.</p>
+        <div id="billItems"></div>
+        <div class="bill-total"><div><span>Estimated total</span><small id="totalCaption">Includes applicable charges</small></div><output id="billTotal">—</output></div>
+        <p id="payee" class="payee">Payable to Eastern Shore Foundation INC</p>
+        <p class="hint">Estimate only.</p>
+        <button id="printButton" class="screen-only" type="button" disabled>Print / save bill as PDF</button>
+        <p id="unsavedNote" class="hint screen-only" hidden>You have changes in the form. Add or save them before printing.</p>
+        <p class="privacy screen-only">Reloading or closing this tab clears the bill.</p>
+      </section>
+    </div>
+    <p id="announcement" class="sr-only" role="status" aria-live="polite"></p>
+  </main>
+</body>
+</html>

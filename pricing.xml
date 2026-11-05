@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='utf-8'?>
+<printCalculator currency="USD" defaultPrinter="x2d">
+  <printer id="x2d" description="Low-cost, efficient printing for everyday parts. Smaller build area." name="X2D" orderMinimum="0" image="assets/x2d-icon.png" imageAlt="X2D machine illustration">
+    <capabilities material="true" printTime="true" labor="optional" maintenance="true" />
+    <perPrint>
+      <fee name="Machine Replacement" amount="0.29" />
+      <fee name="Cleaning Equipment" amount="0.04" />
+      <fee name="PTFE tube Replacement" amount="0.07311827956989247" />
+      <fee name="Hotend cooling fan" amount="0.015483870967741935" />
+      <fee name="Filament Sensors" amount="0.023333333333333334" />
+      <fee name="Hotplate" amount="0.13" />
+      <fee name="Contingency Reserve" amount="0.028846153846153848" />
+    </perPrint>
+    <timeRates>
+      <rate name="Air filter" perHour="0.02" />
+      <rate name="Extruder Gears" perHour="0.03" />
+      <rate name="Nozzle Wiping Pad" perHour="0.01" />
+      <rate name="Hotends" perHour="0.07" />
+      <rate name="Electricity" perHour="0.008339999999999998" />
+    </timeRates>
+    <percentages />
+  </printer>
+  <printer id="h2d" description="Larger build area for bigger parts or batches of smaller parts." name="H2D" orderMinimum="0" image="assets/h2d-icon.png" imageAlt="H2D machine illustration">
+    <capabilities material="true" printTime="true" labor="optional" maintenance="true" />
+    <perPrint>
+      <fee name="Machine Replacement" amount="0.59" />
+      <fee name="Cleaning Equipment" amount="0.04" />
+      <fee name="PTFE tube Replacement" amount="0.07741935483870968" />
+      <fee name="Hotend cooling fan" amount="0.015483870967741935" />
+      <fee name="Induction hotend silicone sleeve" amount="0.043010752688172046" />
+      <fee name="Hotplate" amount="0.23370000000000002" />
+      <fee name="Contingency Reserve" amount="0.04807692307692308" />
+    </perPrint>
+    <timeRates>
+      <rate name="Air filter" perHour="0.02" />
+      <rate name="Dual Extruder Filament Guide" perHour="0.01" />
+      <rate name="Cutter blade" perHour="0.01" />
+      <rate name="Extruder Gears" perHour="0.02" />
+      <rate name="Nozzle Wiping Pad" perHour="0.01" />
+      <rate name="Hotends" perHour="0.08" />
+      <rate name="Electricity" perHour="0.12" />
+    </timeRates>
+    <percentages />
+  </printer>
+  <printer id="h2c" description="Efficient multicolor printing with automatic hotend changes." name="H2C" orderMinimum="0" image="assets/h2c-icon.png" imageAlt="H2C machine illustration">
+    <capabilities material="true" printTime="true" labor="optional" maintenance="true" />
+    <perPrint>
+      <fee name="Machine Replacement" amount="0.775" />
+      <fee name="Cleaning Equipment" amount="0.1" />
+      <fee name="PTFE tube Replacement" amount="0.08172043010752689" />
+      <fee name="Hotend cooling fan" amount="0.015483870967741935" />
+      <fee name="Induction hotend silicone sleeve" amount="0.043010752688172046" />
+      <fee name="Hotplate" amount="0.23370000000000002" />
+      <fee name="Contingency Reserve" amount="0.0273972602739726" />
+    </perPrint>
+    <timeRates>
+      <rate name="Air filter" perHour="0.02" />
+      <rate name="Dual Extruder Filament Guide" perHour="0.01" />
+      <rate name="Cutter blade" perHour="0.01" />
+      <rate name="Extruder Gears" perHour="0.02" />
+      <rate name="Nozzle Wiping Pad" perHour="0.01" />
+      <rate name="Hotends" perHour="0.08" />
+      <rate name="Electricity" perHour="0.12" />
+    </timeRates>
+    <percentages />
+  </printer>
+  <printer id="formlabs4l" description="Fast resin printing with fine detail. Requires washing and curing." name="Form 4L" orderMinimum="0" image="assets/formlabs4l-icon.png" imageAlt="Formlabs Form 4L machine illustration">
+    <capabilities material="true" printTime="true" labor="optional" maintenance="true" />
+    <perPrint>
+      <fee name="Machine Replacement" amount="2.8735632183908044" />
+      <fee name="Service Plan" amount="0.9767241379310345" />
+      <fee name="Resin Tank" amount="1.5736842105263158" />
+      <fee name="Washing Solution" amount="0.91" />
+    </perPrint>
+    <timeRates>
+      <rate name="Electricity" perHour="0.12" />
+    </timeRates>
+    <percentages />
+  </printer>
+  <printer id="labor" name="Labor only" description="Design work and other labor services." orderMinimum="0" image="assets/labor-icon.svg" imageAlt="Person representing labor services">
+    <capabilities material="false" printTime="false" labor="required" maintenance="false" extendedDescription="true" />
+    <perPrint />
+    <timeRates />
+    <percentages />
+  </printer>
+</printCalculator>
