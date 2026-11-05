@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">Person representing labor services</title>
+  <circle cx="64" cy="64" r="59" fill="#edf5f7"/>
+  <g stroke="#243c48" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M48 79l-5 32h18l3-24 3 24h18l-5-32" fill="#486474"/>
+    <path d="M46 51c-9 3-15 14-18 31l12 4 7-18v21h34V68l7 18 12-4c-3-17-9-28-18-31l-9-3H55z" fill="#29a4ad"/>
+    <path d="M57 47v8l7 6 7-6v-8" fill="#efbc94"/>
+    <ellipse cx="64" cy="31" rx="18" ry="21" fill="#f4c9a4"/>
+    <path d="M46 29c-2-15 6-23 18-23 13 0 21 10 18 24l-8-13c-8 7-17 9-28 12z" fill="#486474"/>
+  </g>
+  <circle cx="58" cy="32" r="2" fill="#243c48"/>
+  <circle cx="70" cy="32" r="2" fill="#243c48"/>
+  <path d="M59 41q5 4 10 0" fill="none" stroke="#243c48" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
